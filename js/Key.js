@@ -2,6 +2,7 @@ class Key {
     // constructeur de la classe
     constructor(boutonJQ) {
         this.boutonJQ = boutonJQ;
+        
         this.addListeners();
     }
     // permet d'obtenir l'id de l'élement HTML concerné
@@ -9,6 +10,7 @@ class Key {
         var el = this.boutonJQ[0];
         return el.id;
     }
+    
     // la touche doit jouer le son et s'éclairer
     // l'élément html <audio> peut jouer un son
     // var a = document.getELementById('#idBaliseAudio');
@@ -18,6 +20,8 @@ class Key {
         var a = htmlElJQ.children().first();
         var audio = a[0];
         audio.play();
+        htmlElJQ.addClass('lighted');
+
     }
     // quand le son est fini la touche s'éteinds
     stoped() {
@@ -30,7 +34,6 @@ class Key {
         var htmlElJQ = this.boutonJQ
         htmlElJQ.click(function () {
             instance.play();
-            htmlElJQ.addClass('lighted');
         });
     }
     // on ajoute un écouteur à l'élément <audio>
