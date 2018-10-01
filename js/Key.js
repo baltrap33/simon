@@ -2,11 +2,16 @@ class Key {
     // constructeur de la classe
     constructor(buttonJquery) {
         this.buttonJquery = buttonJquery;
+        this.mute = false;
         this.addListeners();
     }
     // permet d'obtenir l'id de l'élement HTML concerné
     get id() {
+        return this.buttonJquery[0].id;
+    };
 
+    get muted(){
+        return this.mute;
     }
     // la touche doit jouer le son et s'éclairer
     // l'élément html <audio> peut jouer un son
@@ -16,7 +21,10 @@ class Key {
         var htmlEl = this.buttonJquery;
         var son = htmlEl.children();
         var audio = son[0];
-        audio.play();
+        if (!this.mute){
+            audio.play();
+            console.log('play');
+        }      
         htmlEl.addClass("lighted");
     }
     // quand le son est fini la touche s'éteinds
