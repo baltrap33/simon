@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 
     function createKeysListeners() {
-        
+
         var i;
         for (i = 0; simonKeys.length > i; i++) {
             var tab = simonKeys[i];
@@ -31,13 +31,39 @@ $(document).ready(function () {
     // https://developer.mozilla.org/fr/docs/Web/Guide/DOM/Events/Creating_and_triggering_events
     // il faut que ce fichier détecte les clics des touches*
     createKeysListeners();
+    var tabIA = [];
+    function lancementJeux() {
+        $('#startBtn').click(function () {
+            var randomKeys = simonKeys[(Math.floor(Math.random() * simonKeys.length))];
+            tabIA.push(randomKeys);
+            console.log(tabIA);
+            playMelody()
+        });
+
+    }
+    lancementJeux();
+
+    function playMelody() {
+        
+            var i;
+            for (i = 0; tabIA.length > i; i++) {
+                playNote(tabIA[i], i);
+            }
+    }
 
 
+    function playNote(key, i) {
+        setTimeout(function () {
+            key.play();
+        }, 800 * i);
+    }
 
+    /*function newMelody(){
+       var newMel = simonKeys[(Math.floor(Math.random() * simonKeys.length))];
+       tabIA.push(newMel);
+       
+    }*/
 
-
-
-    //});
 
 
 

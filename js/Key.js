@@ -2,6 +2,7 @@ class Key {
     // constructeur de la classe
     constructor(jqElement) {
         this.jqueryElement = jqElement;
+        this.url = jqElement.attr('src');
         this.isMuted = this.analyseKey();
         this.addListeners();
     }
@@ -31,15 +32,20 @@ class Key {
         var instance = this,
             jqEl = instance.jqueryElement,
             audioJqueryEl = jqEl.find('audio'),
-            audioEl = audioJqueryEl[0];
+            audioEl = audioJqueryEl[0],
+            a = new Audio(this.url);
+            a.play();
 
         if (instance.isMuted) {
             return;
         }
         jqEl.addClass('lighted');
-        audioEl.play();
+        
         var event = new CustomEvent('touche', { 'detail': this });
         jqEl[0].dispatchEvent(event);
+        setTimeout(function(){
+            instance.stoped();
+        },400);
     }
     // quand le son de la touche est fini la touche s'éteinds
     stoped() {
@@ -60,13 +66,13 @@ class Key {
     // on ajoute un écouteur à l'élément <audio>
     // pour savoir quand il a fini de jouer afin d'éteindre la lumière
     addEndedListener() {
-        var instance = this,
+        /*var instance = this,
             jqEl = instance.jqueryElement,
             audioJqueryEl = jqEl.find('audio');
 
         audioJqueryEl.on('ended', function () {
             instance.stoped();
-        });
+        });*/
     }
     // on analyse l'element html pour savoir si la touche est 'muette'
     analyseKey() {
