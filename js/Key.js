@@ -30,6 +30,7 @@ class Key {
     play() {
         var instance = this,
             jqEl = instance.jqueryElement,
+            El = jqEl[0],
             audioJqueryEl = jqEl.find('audio'),
             audioEl = audioJqueryEl[0];
 
@@ -38,6 +39,8 @@ class Key {
         }
         jqEl.addClass('lighted');
         audioEl.play();
+        var event = new CustomEvent('clickTouche', { 'detail': this });
+        El.dispatchEvent(event);
     }
     // quand le son de la touche est fini la touche s'éteinds
     stoped() {
