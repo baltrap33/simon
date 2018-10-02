@@ -33,11 +33,15 @@ class Key {
             audioJqueryEl = jqEl.find('audio'),
             audioEl = audioJqueryEl[0];
 
+
         if (instance.isMuted) {
             return;
         }
         jqEl.addClass('lighted');
         audioEl.play();
+
+        var event = new CustomEvent('eventTouch', { 'detail': this });
+        jqEl[0].dispatchEvent(event);
     }
     // quand le son de la touche est fini la touche s'éteinds
     stoped() {
