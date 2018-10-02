@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var simonKeys = [];
-    var tableauChoix = [];
+    var tabOrdi = [];
+    var tabJoueur = [];
     function createKeys() {
         $(".button").each(function () {
             var elementJquery = $(this);
@@ -8,12 +9,14 @@ $(document).ready(function () {
             simonKeys.push(key);
         });
     }
+
     // Utiliser la classe Key pour créer les boutons du simon
     createKeys();
     function eventUserTouch(data) {
         var touchEl = data.detail.id;
-        //console.log(data.detail.id);
-
+        console.log(data.detail.id);
+        tabJoueur.push(touchEl);
+        console.log(tabJoueur);
     }
     function createKeysListener() {
 
@@ -27,23 +30,21 @@ $(document).ready(function () {
     createKeysListener();
 
     $('#startBtn').click(function () {
-        enregistreTab();
+        enregistreTabOrdi();
     });
 
-    function enregistreTab() {
+    function enregistreTabOrdi() {
         var random = Math.random() * 4;
         var choix = Math.floor(random);
         var key = simonKeys[choix];
-        tableauChoix.push(key);
+        tabOrdi.push(key);
 
         playMelodie();
-
     }
-
     function playMelodie() {
         var i;
-        for (i = 0; i < tableauChoix.length; i++) {
-            var key = tableauChoix[i];
+        for (i = 0; i < tabOrdi.length; i++) {
+            var key = tabOrdi[i];
             intervalMelody(key, i);
 
         };
@@ -55,6 +56,8 @@ $(document).ready(function () {
         };
     }
 
+         
+    
 
     // Les boutons ne "diffusent" pas le fait que quelqu'un ait pu cliquer dessus.
     // regarder la documentation
