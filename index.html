@@ -9,43 +9,21 @@
 </head>
 
 <body>
-    <div class="simon">
-        <div>
-            <div id="blue" class="button blue">
-                <audio class="source">
-                    <source src="assets/son_1.ogg" type="audio/ogg">
-                    <source src="assets/son_1.mp3" type="audio/mpeg">
-                    <source src="assets/son_1.wav" type="audio/wav">
-                </audio>
+    <div class="container">
+        <div class="simon">
+            <div class="top">
+                <div id="green" class="button green" audio-src="assets/new1.mp3"></div>
+                <div id="red" class="button red" audio-src="assets/new2.mp3"></div>
             </div>
-            <div id="red" class="button red" muted="true">
-                <audio class="source">
-                    <source src="assets/son_2.ogg" type="audio/ogg">
-                    <source src="assets/son_2.mp3" type="audio/mpeg">
-                    <source src="assets/son_2.wav" type="audio/wav">
-                </audio>
+            <div class="center">
+                <div id="startBtn"></div>
             </div>
-        </div>
-        <div>
-            <div id="yellow" class="button yellow">
-                <audio class="source">
-                    <source src="assets/son_3.ogg" type="audio/ogg">
-                    <source src="assets/son_3.mp3" type="audio/mpeg">
-                    <source src="assets/son_3.wav" type="audio/wav">
-                </audio>
-            </div>
-            <div id="green" class="button green">
-                <audio class="source">
-                    <source src="assets/son_4.ogg" type="audio/ogg">
-                    <source src="assets/son_4.mp3" type="audio/mpeg">
-                    <source src="assets/son_4.wav" type="audio/wav">
-                </audio>
+            <div class="bottom">
+                <div id="yellow" class="button yellow" audio-src="assets/new3.mp3"></div>
+                <div id="blue" class="button blue" audio-src="assets/new4.mp3"></div>
             </div>
         </div>
     </div>
-    <div class="controls">
-		<div id="startBtn">Jouer</div>
-	</div>
     <script src="js/Key.js"></script>
     <script src="js/main.js"></script>
 </body>
