@@ -5,6 +5,7 @@ class Key {
         this.isMuted = this.analyseKey();
         this.addListeners();
     }
+
     // permet d'obtenir l'id de l'élement HTML concerné
     get id() {
         var instance = this,
@@ -28,16 +29,21 @@ class Key {
     // var a = document.getELementById('#idBaliseAudio');
     // a.play();
     play() {
+
         var instance = this,
             jqEl = instance.jqueryElement,
             audioJqueryEl = jqEl.find('audio'),
             audioEl = audioJqueryEl[0];
-
+        var event = new CustomEvent('diffuse', {
+            'detail': this
+        });
         if (instance.isMuted) {
             return;
         }
         jqEl.addClass('lighted');
         audioEl.play();
+        jqEl[0].dispatchEvent(event);
+
     }
     // quand le son de la touche est fini la touche s'éteinds
     stoped() {
