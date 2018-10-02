@@ -10,7 +10,6 @@ class Key {
         var instance = this,
             jqEl = instance.jqueryElement,
             el = jqEl[0];
-
         return el.id;
     }
     // permet d'obtenir l'état 'muet' d'une touche
