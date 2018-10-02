@@ -1,68 +1,60 @@
-.main {
+.container {
     width: 100vw;
 }
 .simon {
-    width: 200px;
+    width: 400px;
+    height: 400px;
     margin: auto;
+    background-image: url('../assets/images/simonBg.png');
 }
-.controls {
-    width: 80px;
-    margin: auto;
-}
-#startBtn {
-    text-align: center;
-    text-transform: uppercase;
-    font-weight :bolder;
-    padding: 10px;
-    background: grey;
-    cursor: pointer;
-}
-.simon > div {
-    margin-bottom: 10px;
+.simon .top, .simon .bottom{
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
-.simon > div > div{
+.simon .button{
+    width: 200px;
+    height: 200px;
+    cursor:pointer;
+}
+.simon .center{
+    width: 180px;
+    height: 180px;
+    position: absolute;
+    left: 199px;
+    top: 117px;
+    border-radius: 150px;
+}
+#startBtn{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 57px;
+    border-radius: 20px;
+    bottom: 46px;
     cursor: pointer;
-    padding: 10px 15px;
 }
-.blue{
-    background : #1a1d66;
+.simon .top .green{
+    background-image: url('../assets/images/green.png');
 }
-.blue.lighted {
-    background: #b7bdff;
-    background: -moz-radial-gradient(center, ellipse cover, #b7bdff 50%, #1a1d66 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, #b7bdff 50%,#1a1d66 100%);
-    background: radial-gradient(ellipse at center, #b7bdff 50%,#1a1d66 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b7bdff', endColorstr='#1a1d66',GradientType=1 );
+.simon .top .green.lighted{
+    background-image: url('../assets/images/l_green.png');
 }
-.red{
-    background : #7a1f1f;
+.simon .top .red{
+    background-image: url('../assets/images/red.png');
 }
-.red.lighted {
-    background: #ff4242;
-    background: -moz-radial-gradient(center, ellipse cover, #ff4242 50%, #7a1f1f 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, #ff4242 50%,#7a1f1f 100%);
-    background: radial-gradient(ellipse at center, #ff4242 50%,#7a1f1f 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff4242', endColorstr='#7a1f1f',GradientType=1 );
+.simon .top .red.lighted{
+    background-image: url('../assets/images/l_red.png');
 }
-.yellow{
-    background : #938d30;
+.simon .bottom .yellow{
+    background-image: url('../assets/images/yellow.png');
 }
-.yellow.lighted {
-    background: #fff242;
-    background: -moz-radial-gradient(center, ellipse cover, #fff242 50%, #938d30 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, #fff242 50%,#938d30 100%);
-    background: radial-gradient(ellipse at center, #fff242 50%,#938d30 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff242', endColorstr='#938d30',GradientType=1 );
+.simon .bottom .yellow.lighted{
+    background-image: url('../assets/images/l_yellow.png');
 }
-.green{
-    background : #25722a;
+.simon .bottom .blue{
+    background-image: url('../assets/images/blue.png');
 }
-.green.lighted {
-    background: #42ff48;
-    background: -moz-radial-gradient(center, ellipse cover, #42ff48 50%, #25722a 100%);
-    background: -webkit-radial-gradient(center, ellipse cover, #42ff48 50%,#25722a 100%);
-    background: radial-gradient(ellipse at center, #42ff48 50%,#25722a 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#42ff48', endColorstr='#25722a',GradientType=1 );
+.simon .bottom .blue.lighted{
+    background-image: url('../assets/images/l_blue.png');
 }
