@@ -26,6 +26,18 @@
     top: 110px;
     border-radius: 150px;
 }
+#display{
+    position: absolute;
+    bottom: 46px;
+    color: white;
+    font-weight: bolder;
+    left: 20px;
+    font-size: 17px;
+    text-transform: uppercase;
+    width: 80px;
+    text-align: center;
+    font-family: sans-serif;
+}
 #startBtn{
     width: 20px;
     height: 20px;
