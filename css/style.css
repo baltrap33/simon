@@ -6,6 +6,7 @@
     height: 400px;
     margin: auto;
     background-image: url('../assets/images/simonBg.png');
+    position: relative;
 }
 .simon .top, .simon .bottom{
     display: flex;
@@ -21,8 +22,8 @@
     width: 180px;
     height: 180px;
     position: absolute;
-    left: 199px;
-    top: 117px;
+    left: 110px;
+    top: 110px;
     border-radius: 150px;
 }
 #startBtn{
