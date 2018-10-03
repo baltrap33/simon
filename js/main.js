@@ -52,21 +52,29 @@ $(document).ready(function () {
     }
 
     function playMelody(){
-        var m = melody.length;
+        var m = melody.length, promises = [];
         for (var i = 0; i < m; i++){
-            var key = melody[i];
-            playNote(key,i);
+            var key = melody[i],
+                promise = playNote(key,i);
+            promises.push(promise);
         }
+        return Promise.all(promises);
     }
 
     function playNote(key, i){
-        setTimeout(function(){
-            key.play();
-        }, speed*i);
+        return new Promise(function(resolve, reject){
+            setTimeout(function(){
+                key.play();
+                resolve();
+            }, speed*i);
+        });        
     }
 
-    $("#startBtn").click(function(){
+    $("#startBtn").click(function(){       
         createMelody(10);
-        playMelody();
+        playMelody().then(function(){
+            console.log("JOUEUR");
+        });
+        
     });
 });
