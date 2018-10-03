@@ -31,6 +31,9 @@ class Key {
         this.jqueryElement.removeClass('lighted').addClass('lighted');
         this.createSound();
         element.dispatchEvent(clickEvent);
+
+        //var finMelodie = new Event('tourJoueur');
+        //element.dispatchEvent(finMelodie);
     }
     createSound() {
         var instance = this,

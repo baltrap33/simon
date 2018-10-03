@@ -25,6 +25,22 @@
     left: 110px;
     top: 110px;
     border-radius: 150px;
+
+}
+#indication, #compteur{
+    font-family: 'Poiret One', cursive;
+    position: absolute;
+    color : white;
+    font-weight: bolder;
+}
+#indication{
+    left: 56px;
+    top: 25px;
+}
+#compteur{
+    bottom: 18px;
+    left: 86px;;
+    
 }
 #startBtn{
     width: 20px;
