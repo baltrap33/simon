@@ -26,8 +26,11 @@ class Key {
             return;
         }
 
+        var clickEvent = new CustomEvent('customClickEvent', { 'detail': this }),
+            element = this.jqueryElement[0];
         this.jqueryElement.removeClass('lighted').addClass('lighted');
         this.createSound();
+        element.dispatchEvent(clickEvent);
     }
     createSound() {
         var instance = this,
