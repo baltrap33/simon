@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var simonKeys = [], speed = 900, melody;
-    
+
     function createKeys() {
         $(".button").each(function () {
             var elementJquery = $(this);
@@ -10,63 +10,81 @@ $(document).ready(function () {
     }
     createKeys();
 
-    function userClickOnKey (event){
+    function userClickOnKey(event) {
         var key = event.detail;
         console.log(key.id);
     }
     function createKeyClickListeners() {
-        simonKeys.map(function(simonKey){
+        simonKeys.map(function (simonKey) {
             jqueryElement = simonKey.jqueryElement;
             jqueryElement.on('customClickEvent', userClickOnKey);
         });
     }
-    createKeyClickListeners();
 
-    function getKeyRandomly(){
+
+    function getKeyRandomly() {
         var m = simonKeys.length;
-        var f = Math.random()*m;
+        var f = Math.random() * m;
         var index = Math.floor(f);
         return simonKeys[index];
     }
 
-    function addMelodyKey(){
+    function addMelodyKey() {
         var k = getKeyRandomly();
         melody.push(k);
     }
 
-    function createMelody(nbNotes){
+    function createMelody(nbNotes) {
         melody = [];
-        for (var i = 0; i < nbNotes; i ++){
+        for (var i = 0; i < nbNotes; i++) {
             addMelodyKey();
         }
         displayMelody();
     }
 
-    function displayMelody(){
+    function displayMelody() {
         var str = '';
-        for (var i = 0; i < melody.length; i ++){
+        for (var i = 0; i < melody.length; i++) {
             var key = melody[i];
-            str += key.id +' ';
+            str += key.id + ' ';
         }
         console.log(str);
     }
 
-    function playMelody(){
+    function playMelody() {
         var m = melody.length;
-        for (var i = 0; i < m; i++){
+        var promises = [];
+        for (var i = 0; i < m; i++) {
             var key = melody[i];
-            playNote(key,i);
+            promises.push(playNote(key, i));
         }
+        return Promise.all(promises);
     }
 
-    function playNote(key, i){
-        setTimeout(function(){
-            key.play();
-        }, speed*i);
+    function playNote(key, i) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                key.play();
+                resolve();
+            }, speed * (i + 1));
+        });
     }
-
-    $("#startBtn").click(function(){
+    function setTourJoueur() {
+        setTimeout(function () {
+            console.log('tour du joueur');
+            joueur();
+        }, 500);
+    }
+    function joueur() {
+        createKeyClickListeners();
+    }
+    $("#startBtn").click(function () {
         createMelody(10);
-        playMelody();
+        playMelody()
+            .then(function () {
+
+                setTourJoueur();
+                
+            });
     });
 });
