@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var simonKeys = [], speed = 900, melody;
+    var simonKeys = [], speed = 900, melody, userTurn, userMelody;
 
     function createKeys() {
         $(".button").each(function () {
@@ -10,18 +10,67 @@ $(document).ready(function () {
     }
     createKeys();
 
-    function userClickOnKey(event) {
-        var key = event.detail;
-        console.log(key.id);
+    function increaseSpeed(){
+        speed = (speed<=200) ? 200 : (speed-25);
     }
+
+    function counterFn(){
+        $("#count").html(melody.length -1);
+    }
+
+    function aVous(){
+        $("#count").html('A vous !');
+    }
+
+    function timeOrdi(){
+        setTimeout(function(){
+            computerTurn();
+
+        },1000);
+    }
+
+    function compareMelody(){
+        var i;
+        for (i=0;i<userMelody.length;i++){
+            var melodyKey = melody[i];
+            var userKey = userMelody[i];
+            if (userKey.id === melodyKey.id){
+                if (i === melody.length -1){
+                    console.log('You win !');
+                    increaseSpeed();
+                    counterFn();
+                    timeOrdi();
+                   
+                }
+                continue;
+            }
+            userMelody = [];
+            console.log('error');
+            break;       
+            
+        }
+    }
+
+    function userClickOnKey(event) {
+        if (userTurn) {
+            var key = event.detail;
+           
+            userMelody.push(key);
+            compareMelody();
+            console.log(userMelody);
+            
+        };
+    }
+
     function createKeyClickListeners() {
         simonKeys.map(function (simonKey) {
             jqueryElement = simonKey.jqueryElement;
             jqueryElement.on('customClickEvent', userClickOnKey);
         });
     }
+    createKeyClickListeners();
 
-
+    
     function getKeyRandomly() {
         var m = simonKeys.length;
         var f = Math.random() * m;
@@ -32,23 +81,6 @@ $(document).ready(function () {
     function addMelodyKey() {
         var k = getKeyRandomly();
         melody.push(k);
-    }
-
-    function createMelody(nbNotes) {
-        melody = [];
-        for (var i = 0; i < nbNotes; i++) {
-            addMelodyKey();
-        }
-        displayMelody();
-    }
-
-    function displayMelody() {
-        var str = '';
-        for (var i = 0; i < melody.length; i++) {
-            var key = melody[i];
-            str += key.id + ' ';
-        }
-        console.log(str);
     }
 
     function playMelody() {
@@ -69,22 +101,35 @@ $(document).ready(function () {
             }, speed * (i + 1));
         });
     }
-    function setTourJoueur() {
-        setTimeout(function () {
-            console.log('tour du joueur');
-            joueur();
-        }, 500);
+   
+
+    function initVariables(){
+        melody = []; 
+        userMelody = [];
     }
-    function joueur() {
-        createKeyClickListeners();
+
+    function userTurnFn(){
+        userMelody = [];
+        userTurn = true;
+        setTimeOut(function(){
+            aVous();
+        },500);
+    }
+
+    function computerTurn(){
+        userTurn = false;
+        addMelodyKey();
+        playMelody().then(function(){
+            userTurnFn();
+        });
+    }
+    
+    function gameStart() {
+        initVariables();
+        computerTurn();
     }
     $("#startBtn").click(function () {
-        createMelody(10);
-        playMelody()
-            .then(function () {
-
-                setTourJoueur();
-                
-            });
+        gameStart();
     });
+    
 });
