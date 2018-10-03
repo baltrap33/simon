@@ -39,6 +39,16 @@ $(document).ready(function () {
         for (var i = 0; i < nbNotes; i ++){
             addMelodyKey();
         }
+        displayMelody();
+    }
+
+    function displayMelody(){
+        var str = '';
+        for (var i = 0; i < melody.length; i ++){
+            var key = melody[i];
+            str += key.id +' ';
+        }
+        console.log(str);
     }
 
     function playMelody(){
