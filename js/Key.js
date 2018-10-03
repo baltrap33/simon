@@ -37,13 +37,13 @@ class Key {
             audio = new Audio(this.url);
 
         audio.play();
-        audio.onended = function () {
+        setTimeout(function(){
             instance.stoped();
-        }
+        }, 350);
     }
     stoped() {
         var instance = this;
-        this.jqueryElement.fadeOut(200, function () {
+        this.jqueryElement.fadeOut(20, function () {
             instance.jqueryElement.removeClass('lighted').show();
         });
     }
