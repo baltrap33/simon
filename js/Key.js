@@ -21,22 +21,22 @@ class Key {
     }
 
     play() {
-        if (this.isMuted) {
-
-            return;
-        }
-
         var clickEvent = new CustomEvent('customClickEvent', { 'detail': this }),
             element = this.jqueryElement[0];
         this.jqueryElement.removeClass('lighted').addClass('lighted');
         this.createSound();
-        element.dispatchEvent(clickEvent);
+
+        if (!this.isMuted) {
+            element.dispatchEvent(clickEvent);
+        }
     }
     createSound() {
         var instance = this,
             audio = new Audio(this.url);
 
-        audio.play();
+        if (!this.isMuted) {
+            audio.play();
+        }
         setTimeout(function(){
             instance.stoped();
         }, 350);
