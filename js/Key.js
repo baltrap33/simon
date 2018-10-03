@@ -60,6 +60,6 @@ class Key {
             jqEl = instance.jqueryElement;
         var muted = jqEl.attr("muted");
 
-        return muted && muted == "true";
+        return (muted && muted == "true") ? true : false;
     }
 }
